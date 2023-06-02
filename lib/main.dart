@@ -8,36 +8,29 @@ void main(List<String> args) async {
   final appState = AppState();
   await appState.initializeApp();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => appState,
-      child: MyApp(
-        appState: appState,
-      ),
+    MyApp(
+      appState: appState,
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.appState});
+  MyApp({super.key, required this.appState});
   final AppState appState;
-
+  late final appRouter = AppRouter(appState);
   @override
   Widget build(BuildContext context) {
-    late final appRouter = AppRouter(appState);
+    final router = appRouter.router;
 
-    return Consumer(
-      builder: (context, value, child) {
-        final router = appRouter.router;
-        return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            useMaterial3: true,
-          ),
-          routerDelegate: router.routerDelegate,
-          routeInformationParser: router.routeInformationParser,
-          routeInformationProvider: router.routeInformationProvider,
-        );
-      },
+    return ChangeNotifierProvider<AppState>(
+      create: (context) => appState,
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+        ),
+        routerConfig: router,
+      ),
     );
   }
 }

@@ -31,13 +31,14 @@ class HomeScreen extends StatelessWidget {
         children: [
           TextButton(
             onPressed: () {
-              context.goNamed('profile');
+              context.go('/profile');
             },
             child: const Text('Go To Profile Screen'),
           ),
           TextButton(
             onPressed: () {
-              context.goNamed('about');
+              // context.goNamed('about');
+              context.go('/about');
             },
             child: const Text('Go To About Screen'),
           ),
