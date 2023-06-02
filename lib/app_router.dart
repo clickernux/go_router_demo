@@ -4,6 +4,7 @@ import 'package:go_router_demo/about_screen.dart';
 import 'package:go_router_demo/app_state.dart';
 import 'package:go_router_demo/home_screen.dart';
 import 'package:go_router_demo/login_screen.dart';
+import 'package:go_router_demo/model/data.dart';
 import 'package:go_router_demo/profile_screen.dart';
 
 class AppRouter {
@@ -23,12 +24,11 @@ class AppRouter {
             GoRoute(
               path: 'profile',
               
-              builder: (context, state) => const ProfileScreen(),
+              builder: (context, state) => ProfileScreen(name: state.queryParameters['name']!,),
             ),
             GoRoute(
               path: 'about',
-             
-              builder: (context, state) => const AboutScreen(),
+              builder: (context, state) => AboutScreen(data: state.extra as Data,),
             )
           ]),
       GoRoute(
