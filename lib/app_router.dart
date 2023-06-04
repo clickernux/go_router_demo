@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:go_router_demo/about_screen.dart';
+
 import 'package:go_router_demo/app_state.dart';
-import 'package:go_router_demo/home_screen.dart';
+
 import 'package:go_router_demo/login_screen.dart';
-import 'package:go_router_demo/model/data.dart';
-import 'package:go_router_demo/profile_screen.dart';
+
 
 import 'details_screen.dart';
 import 'root_screen.dart';
@@ -54,6 +53,8 @@ class AppRouter {
             ),
             routes: [
               GoRoute(
+                // passing _rootNavigatorKey makes this route difference from Shellroute
+                parentNavigatorKey: _rootNavigatorKey,
                 path: 'details',
                 builder: (context, state) => const DetailsScreen(label: 'A'),
               ),

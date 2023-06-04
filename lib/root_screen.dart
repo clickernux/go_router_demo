@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:go_router_demo/app_state.dart';
+import 'package:provider/provider.dart';
 
 class RootScreen extends StatelessWidget {
   const RootScreen({
@@ -15,6 +17,14 @@ class RootScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Tab root - $label'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Provider.of<AppState>(context, listen: false).logout();
+            },
+            child: const Text('Logout'),
+          ),
+        ],
       ),
       body: Center(
         child: Column(
